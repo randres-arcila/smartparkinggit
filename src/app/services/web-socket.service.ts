@@ -11,10 +11,13 @@ export class WebSocketService {
  readonly uri: String = "ws://192.168.25.26:3000";
 
   constructor() {
-    this.socket = io(this.uri)
-   }
 
+   }
+   close(){
+    this.socket.disconnect();
+   }
   listen(eventName: String){
+    this.socket = io(this.uri);
     return new Observable((Subscriber)=>{
       this.socket.on(eventName,(data)=>{
         Subscriber.next(data);
@@ -22,8 +25,10 @@ export class WebSocketService {
     });
   }
 
-  emit(eventName: String, data:any){
-    this.socket.emit(eventName, data);
+  emit(eventName: String){
+    console.log('enviado terminado');
+    this.socket.emit(eventName, this.socket);
+
   }
 
 }
