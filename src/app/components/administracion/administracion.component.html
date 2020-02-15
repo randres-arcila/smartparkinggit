@@ -1,0 +1,46 @@
+<div class="container">
+    <form #deviceForm="ngForm" (ngSubmit)="save(deviceForm)">
+
+        <div class="form-group">
+            <label for="id" class="control-label">ID</label>
+            <input type="string" class="form-control" id="id" name="id" placeholder="120092" ngModel>
+        </div>
+
+        <div class="form-group">
+            <label for="canvas_locationX" class="control-label">Posición en X</label>
+            <input type="number" class="form-control" id="canvas_locationX" name="posicion_X" placeholder="X" ngModel>
+        </div>
+
+        <div class="form-group">
+            <label for="canvas_locationY" class="control-label">Posición en Y</label>
+            <input type="number" class="form-control" id="canvas_locationY" name="posicion_Y" placeholder="Y" ngModel>
+        </div>
+
+        <div class="form-group">
+            <label for="real_localSector" class="control-label">Sector</label>
+            <select class="form-control" id="real_localSector" name="sector" ngModel>
+                <option value="Parqueadero18">Parqueadero bloque 18</option>
+                <option value="ParqueaderoMuuA">Parqueadero MuuA</option>
+                <option value="Circunvalar">Circunvalar</option>
+
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="real_localIdentifier" class="control-label">Identificador de Localidad</label>
+            <input type="number" class="form-control" id="real_localIdentifier" name="identificador" placeholder="#####"
+                ngModel>
+        </div>
+
+        <div class="form-group">
+            <label for="dev_eui" class="control-label">Dev_Eui</label>
+            <input type="text" class="form-control" id="dev_eui" name="eui" placeholder="45689" minlength="16"
+                maxlength="16" ngModel>
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </div>
+
+    </form>
+</div>
