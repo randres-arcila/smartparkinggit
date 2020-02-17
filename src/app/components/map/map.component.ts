@@ -30,10 +30,10 @@ export class MapComponent implements OnInit,OnDestroy{
 
       this.devices.map( device=>{
         if(device.state==='Libre'){
-          context.drawImage(this.sprite1, device.canvas_location.x,device.canvas_location.y,69,69);
+          context.drawImage(this.sprite1, device.canvas_location.x,device.canvas_location.y,80,80);
         }
         else {
-          context.drawImage(this.sprite2, device.canvas_location.x,device.canvas_location.y,69,69);
+          context.drawImage(this.sprite2, device.canvas_location.x,device.canvas_location.y,80,80);
         }
       })
 
