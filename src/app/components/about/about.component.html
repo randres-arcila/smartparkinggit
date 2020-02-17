@@ -15,10 +15,10 @@
     </div>
 
     <!-- Login Form -->
-    <form>
-      <input type="text" id="Usuario" class="fadeIn second" name="login" placeholder="Usuario">
-      <input type="password" id="Contraseña" class="fadeIn third" name="login" placeholder="Contraseña">
-      <button type="submit" class="btn btn-outline-success" (click)="ToAdministration()"> Iniciar Sesión  </button>
+    <form #loginForm="ngForm" (ngSubmit)="ToAdministration(loginForm)">
+      <input type="text" id="user" class="fadeIn second" name="user" placeholder="Usuario" ngModel>
+      <input type="password" id="password" class="fadeIn third" name="password" placeholder="Contraseña" ngModel>
+      <button type="submit" class="btn btn-outline-success"   > Iniciar Sesión  </button>
       <!-- <input type="submit" class="fadeIn fourth" value="Iniciar Sesión" (click)="ToAdministration()"> -->
     </form>
 

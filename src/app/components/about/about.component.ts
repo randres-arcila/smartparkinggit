@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-about',
@@ -13,8 +14,12 @@ export class AboutComponent implements OnInit {
   ngOnInit() {
   }
 
-  ToAdministration() {
-    this.router.navigate(['/Administracion']);
+  ToAdministration(form: NgForm) {
+    if(form.value.user ==='Admin' && form.value.password==='root'){
+      this.router.navigate(['/Administracion']);
+    }else {
+      alert("Invalid credentials")
+    }
   }
 
 }

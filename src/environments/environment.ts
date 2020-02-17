@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiBaseUrl: 'http://192.168.25.26:3000'
+  apiBaseUrl: 'http://localhost:3000',
+  apiWebSocket:'ws://localhost:3000'
 };
 
 /*
