@@ -1,16 +1,12 @@
- <style type ="text/css">
-  h1 { text-align: center}
-
- </style>
-
 <!-- Logo y Nombre -->
 <nav class="navbar navbar-light" style="background-color: #005928;" *ngIf="router.url != '/'">
   <a class="navbar-brand" [routerLink]="['/home']">
     <img src="/assets/Img/SmartParkingP.png" width="30" height="30" class="d-inline-block align-top" alt="">
-    SmartParking
+    SmartParking 
   </a>
   <div class="pointer" [routerLink]="['/Administrador']"><img src="/assets/Img/SmartParkingUsuario.png" width="30"
-       height="30" class="d-inline-block align-top" alt="" *ngIf = "router.url != '/Administrador'"></div>
+       height="30" class="d-inline-block align-top" alt="" 
+       *ngIf = "(router.url != '/Administrador')"></div>
 </nav>
 
 <router-outlet></router-outlet>

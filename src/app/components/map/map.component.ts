@@ -15,15 +15,15 @@ export class MapComponent implements OnInit,OnDestroy{
 
   ngOnInit() {
     console.log("conected");
-    this.sprite1.src = "../../../assets/Img/usuario.png";
-    this.sprite2.src = "../../../assets/Img/SmartParkingUsuario.png";
+    this.sprite1.src = "../../../assets/Img/Libre.png";
+    this.sprite2.src = "../../../assets/Img/Ocupado.png";
     this.webSocketService.listen('initial').subscribe((data:any)=>{
     this.devices=data;
     console.log(this.devices);
   });
     const print=()=>{
       var mapSprite = new Image();
-      mapSprite.src = '../../../assets/Img/auxiliar.jpg';
+      mapSprite.src = '../../../assets/Img/PrimerMapa.jpg';
       context.fillStyle = "#000";
       context.fillRect(0, 0, canvas.width, canvas.height);
       context.drawImage(mapSprite, 0, 0, 800, 800);
