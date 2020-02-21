@@ -6,6 +6,8 @@ export const environment = {
   production: false,
   apiBaseUrl: 'http://localhost:3000',
   apiWebSocket:'ws://localhost:3000'
+  // apiBaseUrl: 'https://smartparkingpi.herokuapp.com/',
+  // apiWebSocket:'ws://smartparkingpi.herokuapp.com/'
 };
 
 /*

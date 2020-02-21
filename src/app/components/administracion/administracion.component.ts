@@ -33,7 +33,7 @@ export class AdministracionComponent implements OnInit {
     }
     // console.log(this.device)
     this.deviceService.addDevice(this.device).subscribe((data) => {
-      alert('PROO')
+      alert('Agregado correctamente');  
     });
     // this.deviceService.addDevic();
 
