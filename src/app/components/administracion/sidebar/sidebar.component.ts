@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,13 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
   opened = false;
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
     
   }
-  toggle(){
-
+  ToAdministracion() {    
+    this.router.navigateByUrl('/Administracion');
+  }
+  ToSidebar(){
+    this.router.navigateByUrl('/Sidebar');
+  }
+  ToStatistics(){
+    this.router.navigateByUrl('/Statistics');
   }
 
 }

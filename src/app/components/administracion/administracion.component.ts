@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DevicesService } from 'src/app/services/devices.service';
 import { NgForm } from '@angular/forms';
 import Device from 'src/app/Device';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-administracion',
   templateUrl: './administracion.component.html',
@@ -11,7 +12,7 @@ export class AdministracionComponent implements OnInit {
 
   device: Device;
 
-  constructor(private deviceService: DevicesService) {
+  constructor(private deviceService: DevicesService, private router: Router) {
   }
 
   Device ;
@@ -37,5 +38,14 @@ export class AdministracionComponent implements OnInit {
     });
     // this.deviceService.addDevic();
 
+  }
+  ToAdministracion() {    
+    this.router.navigateByUrl('/Administracion');
+  }
+  ToSidebar(){
+    this.router.navigateByUrl('/Sidebar');
+  }
+  ToStatistics(){
+    this.router.navigateByUrl('/Statistics');
   }
 }
