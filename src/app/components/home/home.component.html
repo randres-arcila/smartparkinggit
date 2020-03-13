@@ -4,10 +4,69 @@
     <img src="/assets/Img/SmartParking.png" width="200" height="200" class="rounded float-right" alt="...">
 </div> -->
 
-<app-celdas></app-celdas>
-
-<div style="width: 150px; margin: 0 auto">
-    <button type="button" class="btn btn-outline-success" (click)="ToMap()"> Aceptar </button>
+<!-- <app-celdas></app-celdas> -->
+<div>
+    <h1>Celdas Disponibles</h1>
 </div>
 
+<div>
+    <canvas id="Canvas" text-a width="800" height="600"></canvas>
+    <div>
+        <h2 class="card-text">
+            <img style= "position:absolute; left: 23.7%; top: 57%" id="ferrocarril" 
+            src="../../../../assets/Img/SmartParkingCarroBlanco.png" width="70" height="70" (click)="ToFerrocarril()">
+            {{Disponibles[0]}}
+        </h2>
+    </div>
+    <div>
+        <h2 class="card-text">
+            <img style= "position:absolute; left: 71.5%; top: 35%" id="barranquilla" 
+            src="../../../../assets/Img/SmartParkingCarroBlanco.png" width="70" height="70" (click)="ToBarranquilla()">
+            {{Disponibles[1]}}
+        </h2>
+    </div>
+    <div>
+        <h2 class="card-text">
+            <img style= "position:absolute; left: 65%; top: 100%" id="regional" 
+            src="../../../../assets/Img/SmartParkingCarroBlanco.png" width="70" height="70" (click)="ToRegional()">
+            {{Disponibles[2]}}
+        </h2>
+    </div>
+    <div>
+        <h2 class="card-text">
+            <img style= "position:absolute; left: 52.5%; top: 89%" id="MuuA" 
+            src="../../../../assets/Img/Ubicacion.png" width="70" height="70" (click)="ToMuuA()">
+            {{Disponibles[3]}}
+        </h2>
+    </div>
+    <div>
+        <h2 class="card-text">
+            <img style= "position:absolute; left: 56%; top: 47%" id="Bloque18" 
+            src="../../../../assets/Img/Ubicacion.png" width="70" height="70" (click)="ToMap()">
+            {{Disponibles[4]}}
+        </h2>
+    </div>
+</div>
 
+<!-- <div style="width: 150px; margin: 0 auto">
+    <button type="button" class="btn btn-outline-success" (click)="ToMap()"> Aceptar </button>
+</div> -->
+
+
+
+<style>
+    canvas{
+        margin: 0 auto;
+        display: block;
+        align-content: center;
+    }
+    h1 {
+        text-align: center;
+        margin-top: 20px;
+    }
+    h2 {
+        text-align: center;
+        color: rgb(63, 57, 57);
+        font-size: 40px;
+    }
+</style>

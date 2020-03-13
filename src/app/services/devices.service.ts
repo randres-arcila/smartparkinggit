@@ -15,4 +15,9 @@ export class DevicesService {
   addDevice(newDevice: Device): Observable<any>{
     return this.http.post(this.domain + '/devices/', newDevice);
   }
+
+  getEmptiesCount(){
+    return this.http.get(this.domain + '/devices/status');
+  }
+
 }

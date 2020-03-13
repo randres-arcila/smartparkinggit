@@ -1,0 +1,111 @@
+<div class="d-flex" id="wrapper">
+
+    <!-- Sidebar -->
+    <div class="bg-light border-right" id="sidebar-wrapper">
+        <div class="sidebar-heading"> Administración </div>
+        <div class="list-group list-group-flush">
+        <a href="/Administracion" class="list-group-item list-group-item-action bg-light">Matricular Dispositivo</a>
+        <a href="/Sidebar" class="list-group-item list-group-item-action bg-light">Control Dispositivos</a>
+        <a href="/Statistics" class="list-group-item list-group-item-action bg-light">Estadisticas</a>
+        
+        </div>
+    </div>
+
+    <div id="page-content-wrapper">
+        <div class="container-fluid">
+            <form #statisticForm="ngForm" (ngSubmit)="generate(statisticForm)">
+                <div class="form-row">
+                    <div class="col">
+                        <label for="real_localSector" class="control-label">Sector</label>
+                        <select class="form-control" id="real_localSector" name="sector" ngModel>
+                            <option value="Parqueadero18">Parqueadero bloque 18</option>
+                            <option value="ParqueaderoMuuA">Parqueadero MuuA</option>
+                            <option value="CircunvalarFerrocarril">Circunvalar Ferrocarril</option>
+                            <option value="CircunvalarRegional">Circunvalar Regional</option>
+                            <option value="CircunvalarBarranquilla">Circunvalar Barranquilla</option>
+
+                        </select>
+                    </div>
+                    <div class="col">
+                        <label for="mes" class="control-label">Mes</label>
+                        <select class="form-control" id="mes" name="mesAño" ngModel>
+                            <option value=1>Enero</option>
+                            <option value=2>Febrero</option>
+                            <option value=3>Marzo</option>
+                            <option value=4>Abril</option>
+                            <option value=5>Mayo</option>
+                            <option value=6>Junio</option>
+                            <option value=7>Julio</option>
+                            <option value=8>Agosto</option>
+                            <option value=9>Septiembre</option>
+                            <option value=10>Octubre</option>
+                            <option value=11>Noviembre</option>
+                            <option value=12>Diciembre</option>
+
+                        </select>
+                    </div>
+                    <div class="col">
+                        <label for="semana" class="control-label">Semana</label>
+                        <select class="form-control" id="semana" name="semana" ngModel>
+                            <option value=1>1</option>
+                            <option value=2>2</option>
+                            <option value=3>3</option>
+                            <option value=4>4</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-outline-success">OK</button>
+                </div>
+            </form>
+            <canvas id="Canvas" text-a width="800" height="800"></canvas>
+            
+            <style>
+                canvas{
+                    margin: 0 auto;
+                    display: block;
+                    align-content: center;
+                }
+                button{
+                    margin-top: 15px;
+
+                }
+                form{
+                    margin: 10px;
+                }
+                input[type=button], input[type=submit], input[type=reset]  {
+                    background-color: #3BB610;
+                    border: none;
+                    color: white;
+                    padding: 15px 80px;
+                    text-align: center;
+                    text-decoration: none;
+                    display: inline-block;
+                    text-transform: uppercase;
+                    font-size: 13px;
+                    -webkit-box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+                    box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+                    -webkit-border-radius: 5px 5px 5px 5px;
+                    border-radius: 5px 5px 5px 5px;
+                    margin: 5px 20px 40px 20px;
+                    -webkit-transition: all 0.3s ease-in-out;
+                    -moz-transition: all 0.3s ease-in-out;
+                    -ms-transition: all 0.3s ease-in-out;
+                    -o-transition: all 0.3s ease-in-out;
+                    transition: all 0.3s ease-in-out;
+                }
+                input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover  {
+                    background-color: #005928;
+                }
+                input[type=button]:active, input[type=submit]:active, input[type=reset]:active  {
+                    -moz-transform: scale(0.95);
+                    -webkit-transform: scale(0.95);
+                    -o-transform: scale(0.95);
+                    -ms-transform: scale(0.95);
+                    transform: scale(0.95);
+                }
+
+            </style>
+        </div>
+    </div>
+</div>

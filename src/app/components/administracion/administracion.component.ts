@@ -20,7 +20,6 @@ export class AdministracionComponent implements OnInit {
 
   save(form: NgForm){
     this.device = {
-      id: form.value.id,
       canvas_location: {
         x: form.value.posicion_X,
         y: form.value.posicion_Y
@@ -33,7 +32,8 @@ export class AdministracionComponent implements OnInit {
     }
     // console.log(this.device)
     this.deviceService.addDevice(this.device).subscribe((data) => {
-      alert('Agregado correctamente');  
+      alert('Agregado correctamente'); 
+      form.resetForm();
     });
     // this.deviceService.addDevic();
 

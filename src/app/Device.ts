@@ -1,5 +1,4 @@
 export default class Device{
-    id: string;
     canvas_location: CanvasLocation;
     real_location: RealLocation;
     dev_eui: String;

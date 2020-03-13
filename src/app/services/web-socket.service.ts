@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 export class WebSocketService {
 
  socket: any;
- readonly uri: String = "ws://192.168.25.26:3000";
+ readonly uri: String = "ws://192.168.193.53:3000";
 
   constructor() {
 
@@ -18,7 +18,7 @@ export class WebSocketService {
     this.socket.disconnect();
    }
   listen(eventName: String){
-    this.socket = io(environment.apiWebSocket);
+    this.socket = io(this.uri);
     return new Observable((Subscriber)=>{
       this.socket.on(eventName,(data)=>{
         Subscriber.next(data);
