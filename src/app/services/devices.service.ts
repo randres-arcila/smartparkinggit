@@ -19,5 +19,15 @@ export class DevicesService {
   getEmptiesCount(){
     return this.http.get(this.domain + '/devices/status');
   }
+  sendMessage(device): Observable<any>{
+    return this.http.post(this.domain + '/devices/message',{device});
+  }
+  
+  getDevicesBySector(sector:string){
+    return this.http.get(this.domain+'/devices/'+sector)
+  }
+  deleteDevice(id:string){
+    return this.http.delete(this.domain+'/devices/'+id)
+  }
 
 }

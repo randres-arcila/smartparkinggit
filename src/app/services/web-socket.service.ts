@@ -9,26 +9,29 @@ import { environment } from 'src/environments/environment';
 export class WebSocketService {
 
  socket: any;
- readonly uri: String = "ws://192.168.193.53:3000";
+ readonly uri: String = "ws://localhost:3000";
 
   constructor() {
 
+   }
+   connect(){
+    this.socket = io(this.uri);
    }
    close(){
     this.socket.disconnect();
    }
   listen(eventName: String){
-    this.socket = io(this.uri);
+
     return new Observable((Subscriber)=>{
       this.socket.on(eventName,(data)=>{
         Subscriber.next(data);
       })
-    });
+    }); 
   }
 
-  emit(eventName: String){
+  emit(eventName: String,data:String){
     console.log('enviado terminado');
-    this.socket.emit(eventName, this.socket);
+    this.socket.emit(eventName,data);
 
   }
 

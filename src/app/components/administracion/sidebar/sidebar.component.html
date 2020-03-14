@@ -16,9 +16,56 @@
     <div id="page-content-wrapper">
       <div class="container-fluid">
         <h2>Control de Dispositivos XD</h2>
-      </div>
+      
+      <form #selectForm="ngForm" (ngSubmit)="generateList(selectForm)">
+        <div class="form-row">
+            <div class="col">
+                <label for="real_localSector" class="control-label">Sector</label>
+                <select class="form-control" id="real_localSector" name="sector" ngModel>
+                    <option value="parqueadero18">Parqueadero bloque 18</option>
+                    <option value="parqueaderomuua">Parqueadero MuuA</option>
+                    <option value="circunferrocarril">Circunvalar Ferrocarril</option>
+                    <option value="circunregional">Circunvalar Regional</option>
+                    <option value="circunbarranquilla">Circunvalar Barranquilla</option>
+                </select>
+            </div>
+        </div>
+        <div>
+            <button type="submit" class="btn btn-outline-success">OK</button>
+        </div>
+    </form>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Identifier</th>
+            <th scope="col">TTN id</th>
+            <th scope="col">State</th>
+            <th scope="col">LastKeepAlive</th>
+            <th scope="col">Dev_eui</th>
+            <th scope="col">ChangeMode</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let dev of dispositivos">
+            <th scope="row">{{dev.real_location.identifier}}</th>
+            <td>{{dev._id}}</td>
+            <td>{{dev.state}}</td>
+            <td>{{dev.lastKeepAlive}}</td>
+            <td>{{dev.dev_eui}}</td>
+            <td>
+              <button *ngIf="dev.state=='Sleep'" class="btn btn-success" (click)="sendUp(dev)" >Up</button>
+              <button *ngIf="dev.state !=='Sleep'" class="btn btn-info" (click)="sendSleep(dev)" >Sleep</button>
+            </td>
+            <td><button (click)="delete(dev)" class="btn btn-danger" >X</button></td>
+          </tr>
+
+        </tbody>
+      </table>
     </div>
   </div>
+</div>
+  
 
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>

@@ -13,7 +13,17 @@ export class HomeComponent implements OnInit {
   public timerInterval:any;
   carroBlanco = new Image();
   Disponibles : any[] = [];
-  constructor(private webSocketService: WebSocketService, private router: Router, private deviceService: DevicesService) { }
+  constructor( private router: Router, private deviceService: DevicesService) {
+    this.deviceService.getEmptiesCount().subscribe((data:any)=>{
+      // data.map(i=>{
+      //   this.Disponibles.push(i.count);
+      // })
+      this.Disponibles=data;
+      console.log(this.Disponibles);
+      
+    })
+
+   }
   ngOnInit() {
     this.carroBlanco.src = "../../../assets/Img/Ubicacion.png";
     
@@ -32,17 +42,7 @@ export class HomeComponent implements OnInit {
     var context = canvas.getContext("2d");
 
     this.timerInterval=setInterval(print, (1000 / 60)); // Refresh 60 times a second
-    this.webSocketService.listen('news').subscribe((data)=>{
-    console.log(data);
-    
-    });
-    this.deviceService.getEmptiesCount().subscribe((data:any)=>{
-      data.map(i=>{
-        this.Disponibles.push(i.count);
-      })
 
-
-    })
 
     // this.deviceService.getEmptiesCount().subscribe((data:any) => {
     //   console.log(data.count)
@@ -71,7 +71,6 @@ export class HomeComponent implements OnInit {
   ngOnDestroy() {
     clearInterval(this.timerInterval);
     console.log('cambio de pantalla');
-    this.webSocketService.close();
   }
   disponibilidad(){
 

@@ -12,12 +12,18 @@ export class MapComponent implements OnInit,OnDestroy{
   constructor(private webSocketService: WebSocketService) { }
   sprite1 = new Image();
   sprite2 = new Image();
+  sprite3 = new Image();
 
   ngOnInit() {
     console.log("conected");
     this.sprite1.src = "../../../assets/Img/Libre.png";
     this.sprite2.src = "../../../assets/Img/Ocupado.png";
+    this.sprite3.src = "../../../assets/Img/Sleep.png";
+    this.webSocketService.connect();
+    this.webSocketService.emit('Join','parqueadero18');
+
     this.webSocketService.listen('initial').subscribe((data:any)=>{
+
     this.devices=data;
     console.log(this.devices);
   });
@@ -32,8 +38,11 @@ export class MapComponent implements OnInit,OnDestroy{
         if(device.state==='Libre'){
           context.drawImage(this.sprite1, device.canvas_location.x,device.canvas_location.y,80,80);
         }
-        else {
+        else if(device.state=='Ocupado'){
           context.drawImage(this.sprite2, device.canvas_location.x,device.canvas_location.y,80,80);
+        }
+        else{
+          context.drawImage(this.sprite3, device.canvas_location.x,device.canvas_location.y,80,80);
         }
       })
 
