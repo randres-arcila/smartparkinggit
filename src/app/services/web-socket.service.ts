@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 export class WebSocketService {
 
  socket: any;
- readonly uri: String = "ws://localhost:3000";
+ readonly uri: String = "ws://134.122.19.117:3000";
 
   constructor() {
 
@@ -26,7 +26,7 @@ export class WebSocketService {
       this.socket.on(eventName,(data)=>{
         Subscriber.next(data);
       })
-    }); 
+    });
   }
 
   emit(eventName: String,data:String){

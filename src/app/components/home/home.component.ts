@@ -13,20 +13,44 @@ export class HomeComponent implements OnInit {
   public timerInterval:any;
   carroBlanco = new Image();
   Disponibles : any[] = [];
+  parqueadero18={
+    _id:'',
+    count:0
+  };
+  circunregional={
+    _id:'',
+    count:0
+  };
+  circunbarranquilla={
+    _id:'',
+    count:0
+  };
+  circunferrocarril={
+    _id:'',
+    count:0
+  };
+  parqueaderomuua={
+    _id:'',
+    count:0
+  };
+
   constructor( private router: Router, private deviceService: DevicesService) {
     this.deviceService.getEmptiesCount().subscribe((data:any)=>{
-      // data.map(i=>{
-      //   this.Disponibles.push(i.count);
-      // })
+
       this.Disponibles=data;
       console.log(this.Disponibles);
-      
+      this.parqueaderomuua=this.Disponibles[0];
+      this.parqueadero18=this.Disponibles[1];
+      this.circunregional=this.Disponibles[2];
+      this.circunferrocarril=this.Disponibles[3];
+      this.circunbarranquilla=this.Disponibles[4];
+
     })
 
    }
   ngOnInit() {
     this.carroBlanco.src = "../../../assets/Img/Ubicacion.png";
-    
+
     const print=()=>{
       var mapSprite = new Image();
       mapSprite.src = '../../../assets/Img/Mapa.jpg';
@@ -49,7 +73,7 @@ export class HomeComponent implements OnInit {
 
     // });
 
-  
+
   }
 
   ToMap() {
