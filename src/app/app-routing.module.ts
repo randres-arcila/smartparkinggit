@@ -15,7 +15,9 @@ import { StatisticsComponent } from './components/administracion/statistics/stat
 
 const routes: Routes = [
   {
-    path: '', component: LoadScreenComponent
+    //path: '', component: LoadScreenComponent
+    path: '',redirectTo: '/home',
+    pathMatch:'full'
   },
   {
     path: 'home', component: HomeComponent

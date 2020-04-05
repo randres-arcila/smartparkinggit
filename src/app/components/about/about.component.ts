@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-about',
@@ -9,17 +10,18 @@ import { NgForm } from '@angular/forms';
 })
 export class AboutComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,private authService:AuthService) { }
 
   ngOnInit() {
   }
 
-  ToAdministration(form: NgForm) {
-    if(form.value.user ==='Admin' && form.value.password==='root'){
+  login(form:NgForm){
+    this.authService.login(form.value).subscribe(res=>{
+      localStorage.setItem('token',res.token);
       this.router.navigate(['/Administracion']);
-    }else {
-      alert("Invalid credentials")
-    }
+    })
   }
+
+
 
 }

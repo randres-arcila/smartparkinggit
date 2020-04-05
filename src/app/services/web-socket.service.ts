@@ -8,12 +8,15 @@ import { environment } from 'src/environments/environment';
 })
 export class WebSocketService {
 
- socket: any;
- readonly uri: String = "ws://134.122.19.117:3000";
+  socket: any;
+
 
   constructor() {
 
    }
+
+  uri = environment.apiWebSocket;
+
    connect(){
     this.socket = io(this.uri);
    }
