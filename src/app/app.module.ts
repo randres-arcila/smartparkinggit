@@ -10,7 +10,7 @@ import { MapComponent } from './components/map/map.component';
 import { CeldasComponent } from './components/home/celdas/celdas.component';
 import { AdministracionComponent } from './components/administracion/administracion.component';
 import { DevicesService} from './services/devices.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule ,HTTP_INTERCEPTORS} from '@angular/common/http';
 import { MapaService } from './services/mapa.service';
 import { WebSocketService} from 'src/app/services/web-socket.service';
 import { FerrocarrilComponent } from './components/ferrocarril/ferrocarril.component';
@@ -19,8 +19,8 @@ import { BarranquillaComponent } from './components/barranquilla/barranquilla.co
 import { MuuaComponent } from './components/muua/muua.component';
 import { SidebarComponent } from './components/administracion/sidebar/sidebar.component';
 import { StatisticsComponent } from './components/administracion/statistics/statistics.component';
-
-
+import {AuthGuard} from "./auth.guard";
+import {TokenInterceptorService} from "./services/token-interceptor.service";
 
 @NgModule({
   declarations: [
@@ -45,7 +45,18 @@ import { StatisticsComponent } from './components/administracion/statistics/stat
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [DevicesService,MapaService,WebSocketService],
+  providers: [
+    AuthGuard,
+    DevicesService,
+    MapaService,
+    WebSocketService,
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:TokenInterceptorService,
+      multi:true
+    }
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

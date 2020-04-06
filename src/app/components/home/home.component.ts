@@ -36,7 +36,7 @@ export class HomeComponent implements OnInit {
 
   constructor( private router: Router, private deviceService: DevicesService) {
     this.deviceService.getEmptiesCount().subscribe((data:any)=>{
-
+      
       this.Disponibles=data;
       console.log(this.Disponibles);
       this.parqueaderomuua=this.Disponibles[0];
@@ -94,9 +94,6 @@ export class HomeComponent implements OnInit {
 
   ngOnDestroy() {
     clearInterval(this.timerInterval);
-    console.log('cambio de pantalla');
   }
-  disponibilidad(){
 
-  }
 }

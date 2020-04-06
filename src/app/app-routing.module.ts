@@ -11,7 +11,7 @@ import { BarranquillaComponent } from './components/barranquilla/barranquilla.co
 import { RegionalComponent } from './components/regional/regional.component';
 import { SidebarComponent } from './components/administracion/sidebar/sidebar.component';
 import { StatisticsComponent } from './components/administracion/statistics/statistics.component';
-
+import {AuthGuard} from "./auth.guard";
 
 const routes: Routes = [
   {
@@ -29,7 +29,7 @@ const routes: Routes = [
     path: 'Administrador', component: AboutComponent
   },
   {
-    path: 'Administracion', component: AdministracionComponent
+    path: 'Administracion', component: AdministracionComponent,canActivate:[AuthGuard]
   },
   {
     path: 'Ferrocarril', component: FerrocarrilComponent
@@ -44,10 +44,10 @@ const routes: Routes = [
     path: 'Regional', component: RegionalComponent
   },
   {
-    path: 'Sidebar', component: SidebarComponent
+    path: 'Sidebar', component: SidebarComponent,canActivate:[AuthGuard]
   },
   {
-    path: 'Statistics', component: StatisticsComponent
+    path: 'Statistics', component: StatisticsComponent,canActivate:[AuthGuard]
   }
 ];
 
