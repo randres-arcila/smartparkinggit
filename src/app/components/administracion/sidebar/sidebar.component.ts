@@ -33,18 +33,18 @@ export class SidebarComponent implements OnInit {
       if(data.status==='Success'){
         let aux=this.dispositivos.indexOf(device)
         this.dispositivos.splice(aux, 1);
-      }    
+      }
     })
   }
   generateList(form: NgForm){
     let sector=form.value.sector;
     this.deviceService.getDevicesBySector(sector).subscribe((data:any)=>{
-      this.dispositivos=data;    
-        
+      this.dispositivos=data;
+
     })
 
   }
-  ToAdministracion() {    
+  ToAdministracion() {
     this.router.navigateByUrl('/Administracion');
   }
   ToSidebar(){

@@ -7,7 +7,7 @@
         <a (click) = "ToAdministracion()" class="list-group-item list-group-item-action bg-light">Matricular Dispositivo</a>
         <a (click) = "ToSidebar()" class="list-group-item list-group-item-action bg-light">Control Dispositivos</a>
         <a (click) = "ToStatistics()" class="list-group-item list-group-item-action bg-light">Estadisticas</a>
-        
+
       </div>
     </div>
     <!-- /#sidebar-wrapper -->
@@ -15,8 +15,8 @@
     <!-- Page Content -->
     <div id="page-content-wrapper">
       <div class="container-fluid">
-        <h2>Control de Dispositivos XD</h2>
-      
+        <h2>Control de Dispositivos</h2>
+
       <form #selectForm="ngForm" (ngSubmit)="generateList(selectForm)">
         <div class="form-row">
             <div class="col">
@@ -37,27 +37,32 @@
       <table class="table">
         <thead>
           <tr>
-            <th scope="col">Identifier</th>
-            <th scope="col">TTN id</th>
-            <th scope="col">State</th>
-            <th scope="col">LastKeepAlive</th>
-            <th scope="col">Dev_eui</th>
-            <th scope="col">ChangeMode</th>
-            <th scope="col">Delete</th>
+            <th scope="col">Identificador 
+            </th>
+            <th scope="col">Estado</th>
+            <th scope="col">Última vez visto</th>
+            <th scope="col">Batería</th>
+            <th scope="col">Cambiar modo</th>
+            <th scope="col">Eliminar</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let dev of dispositivos">
             <th scope="row">{{dev.real_location.identifier}}</th>
-            <td>{{dev._id}}</td>
             <td>{{dev.state}}</td>
-            <td>{{dev.lastKeepAlive}}</td>
-            <td>{{dev.dev_eui}}</td>
+            <td>
+              {{dev.lastSeen}} minutos
+              <img *ngIf="dev.lastSeen>30" src="/assets/Img/ejemplo.png" width="40" height="40" class="d-inline-block align-top" alt="">
+            </td>
+            <td>{{dev.battery}}v
+              <img *ngIf="dev.battery <1.7" src="/assets/Img/ejemplo.png" width="40" height="40" class="d-inline-block align-top" alt="">
+            </td>
             <td>
               <button *ngIf="dev.state=='Sleep'" class="btn btn-success" (click)="sendUp(dev)" >Up</button>
               <button *ngIf="dev.state !=='Sleep'" class="btn btn-info" (click)="sendSleep(dev)" >Sleep</button>
             </td>
             <td><button (click)="delete(dev)" class="btn btn-danger" >X</button></td>
+
           </tr>
 
         </tbody>
@@ -65,7 +70,7 @@
     </div>
   </div>
 </div>
-  
+
 
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
