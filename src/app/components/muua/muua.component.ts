@@ -38,19 +38,28 @@ export class MuuaComponent implements OnInit {
 
       this.devices.map( device=>{
         if(device.state==='Libre'){
-          context.drawImage(this.sprite1, device.canvas_location.x,device.canvas_location.y,80,80);
+          context.drawImage(this.sprite1, device.canvas_location.x,device.canvas_location.y,35,35);
         }
         else if(device.state=='Ocupado'){
-          context.drawImage(this.sprite2, device.canvas_location.x,device.canvas_location.y,80,80);
+          context.drawImage(this.sprite2, device.canvas_location.x,device.canvas_location.y,35,35);
         }
         else{
-          context.drawImage(this.sprite3, device.canvas_location.x,device.canvas_location.y,80,80);
+          context.drawImage(this.sprite3, device.canvas_location.x,device.canvas_location.y,35,35);
         }
       })
 
     };
     var canvas = <HTMLCanvasElement> document.getElementById('Canvas');
     var context = canvas.getContext("2d");
+    // var mouseClicked = function (mouse) {
+    // var rect = canvas.getBoundingClientRect();
+    // var mouseXPos = (mouse.x - rect.left);
+    // var mouseYPos = (mouse.y - rect.top);
+
+    //     console.log((mouseXPos - 18.5), (mouseYPos - 18.5));
+    //   }
+    //  canvas.addEventListener("mousedown", mouseClicked, false);
+
 
     this.timerInterval=setInterval(print, (1000 / 60)); // Refresh 60 times a second
     this.webSocketService.listen('news').subscribe((data)=>{
