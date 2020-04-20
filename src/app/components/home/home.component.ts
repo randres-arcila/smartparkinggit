@@ -58,7 +58,7 @@ export class HomeComponent implements OnInit {
       context.fillStyle = "#000";
       context.fillRect(0, 0, canvas.width, canvas.height);
       context.drawImage(mapSprite, 0, 0, 800, 600);
-      context.drawImage(this.carroBlanco, 50.4, 205, 70, 70);
+      //context.drawImage(this.carroBlanco, 50.4, 205, 70, 70);
 
     };
 

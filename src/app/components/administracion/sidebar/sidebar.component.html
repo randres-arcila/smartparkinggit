@@ -1,85 +1,93 @@
 <div class="d-flex" id="wrapper">
 
-    <!-- Sidebar -->
-    <div class="bg-light border-right" id="sidebar-wrapper">
-      <div class="sidebar-heading"> Administración </div>
-      <div class="list-group list-group-flush">
-        <a (click) = "ToAdministracion()" class="list-group-item list-group-item-action bg-light">Matricular Dispositivo</a>
-        <a (click) = "ToSidebar()" class="list-group-item list-group-item-action bg-light">Control Dispositivos</a>
-        <a (click) = "ToStatistics()" class="list-group-item list-group-item-action bg-light">Estadisticas</a>
+  <!-- Sidebar -->
+  <div class="bg-light border-right" id="sidebar-wrapper">
+    <div class="sidebar-heading"> Administración </div>
+    <div class="list-group list-group-flush">
+      <a (click) = "ToAdministracion()" class="list-group-item list-group-item-action bg-light">Matricular Dispositivo</a>
+      <a (click) = "ToSidebar()" class="list-group-item list-group-item-action bg-light">Control Dispositivos</a>
+      <a (click) = "ToStatistics()" class="list-group-item list-group-item-action bg-light">Estadisticas</a>
 
-      </div>
-    </div>
-    <!-- /#sidebar-wrapper -->
-
-    <!-- Page Content -->
-    <div id="page-content-wrapper">
-      <div class="container-fluid">
-        <h2>Control de Dispositivos</h2>
-
-      <form #selectForm="ngForm" (ngSubmit)="generateList(selectForm)">
-        <div class="form-row">
-            <div class="col">
-                <label for="real_localSector" class="control-label">Sector</label>
-                <select class="form-control" id="real_localSector" name="sector" ngModel>
-                    <option value="parqueadero18">Parqueadero bloque 18</option>
-                    <option value="parqueaderomuua">Parqueadero MuuA</option>
-                    <option value="circunferrocarril">Circunvalar Ferrocarril</option>
-                    <option value="circunregional">Circunvalar Regional</option>
-                    <option value="circunbarranquilla">Circunvalar Barranquilla</option>
-                </select>
-            </div>
-        </div>
-        <div>
-            <button type="submit" class="btn btn-outline-success">OK</button>
-        </div>
-    </form>
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">Identificador 
-            </th>
-            <th scope="col">Estado</th>
-            <th scope="col">Última vez visto</th>
-            <th scope="col">Batería</th>
-            <th scope="col">Cambiar modo</th>
-            <th scope="col">Eliminar</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let dev of dispositivos">
-            <th scope="row">{{dev.real_location.identifier}}</th>
-            <td>{{dev.state}}</td>
-            <td>
-              {{dev.lastSeen}} minutos
-              <img *ngIf="dev.lastSeen>30" src="/assets/Img/ejemplo.png" width="40" height="40" class="d-inline-block align-top" alt="">
-            </td>
-            <td>{{dev.battery}}v
-              <img *ngIf="dev.battery <1.7" src="/assets/Img/ejemplo.png" width="40" height="40" class="d-inline-block align-top" alt="">
-            </td>
-            <td>
-              <button *ngIf="dev.state=='Sleep'" class="btn btn-success" (click)="sendUp(dev)" >Up</button>
-              <button *ngIf="dev.state !=='Sleep'" class="btn btn-info" (click)="sendSleep(dev)" >Sleep</button>
-            </td>
-            <td><button (click)="delete(dev)" class="btn btn-danger" >X</button></td>
-
-          </tr>
-
-        </tbody>
-      </table>
     </div>
   </div>
+  <!-- /#sidebar-wrapper -->
+
+  <!-- Page Content -->
+  <div id="page-content-wrapper">
+    <div class="container-fluid">
+      <h2>Control de Dispositivos</h2>
+
+    <form #selectForm="ngForm" (ngSubmit)="generateList(selectForm)">
+      <div class="form-row">
+          <div class="col">
+              <label for="real_localSector" class="control-label">Sector</label>
+              <select class="form-control" id="real_localSector" name="sector" ngModel>
+                  <option value="parqueadero18">Parqueadero bloque 18</option>
+                  <option value="parqueaderomuua">Parqueadero MuuA</option>
+                  <option value="circunferrocarril">Circunvalar Ferrocarril</option>
+                  <option value="circunregional">Circunvalar Regional</option>
+                  <option value="circunbarranquilla">Circunvalar Barranquilla</option>
+              </select>
+          </div>
+      </div>
+      <div>
+          <button type="submit" class="btn btn-outline-success margen">OK</button>
+      </div>
+  </form>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Identificador 
+          </th>
+          <th scope="col">Estado</th>
+          <th scope="col">Última vez visto</th>
+          <th scope="col">Batería</th>
+          <th scope="col">Cambiar modo</th>
+          <th scope="col">Eliminar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let dev of dispositivos">
+          <th scope="row">{{dev.real_location.identifier}}</th>
+          <td>{{dev.state}}</td>
+          <td>
+            {{dev.lastSeen}} minutos
+            <img *ngIf="dev.lastSeen>30" src="/assets/Img/IconoLupa.png" width="30" height="30" class="d-inline-block align-top" alt="">
+          </td>
+          <td>{{dev.battery}}v
+            <img *ngIf="1.7>dev.battery" src="/assets/Img/IconoBateria.png" width="30" height="30" class="d-inline-block align-top" alt="">
+          </td>
+          <td>
+            <button *ngIf="dev.state=='Sleep'" class="btn btn-success" (click)="sendUp(dev)" >Up</button>
+            <button *ngIf="dev.state !=='Sleep'" class="btn btn-info" (click)="sendSleep(dev)" >Sleep</button>
+          </td>
+          <td><button (click)="delete(dev)" class="btn btn-danger" >X</button></td>
+
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+</div>
 </div>
 
 
-  <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Menu Toggle Script -->
-  <script>
-    $("#menu-toggle").click(function(e) {
-      e.preventDefault();
-      $("#wrapper").toggleClass("toggled");
-    });
-  </script>
+<!-- Menu Toggle Script -->
+<script>
+  $("#menu-toggle").click(function(e) {
+    e.preventDefault();
+    $("#wrapper").toggleClass("toggled");
+  });
+</script>
+
+<style>
+  button.margen{
+    margin-top: 15px;
+    margin-block-end: 15px;
+ }
+ 
+</style>
