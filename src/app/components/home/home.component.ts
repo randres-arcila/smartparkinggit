@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { WebSocketService} from 'src/app/services/web-socket.service';
 //import { Status } from 'src/app/Status'
@@ -9,9 +9,10 @@ import { DevicesService } from 'src/app/services/devices.service';
   templateUrl: './home.component.html',
   styles: []
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit{
   public timerInterval:any;
   carroBlanco = new Image();
+  ubicacion = new Image();
   Disponibles : any[] = [];
   parqueadero18={
     _id:'',
@@ -35,8 +36,8 @@ export class HomeComponent implements OnInit {
   };
 
   constructor( private router: Router, private deviceService: DevicesService) {
-    this.deviceService.getEmptiesCount().subscribe((data:any)=>{
-    this.sayHi()
+
+      this.deviceService.getEmptiesCount().subscribe((data:any)=>{
       this.Disponibles=data;
       console.log(this.Disponibles);
       this.parqueaderomuua=this.Disponibles[0];
@@ -48,34 +49,41 @@ export class HomeComponent implements OnInit {
     })
 
    }
+
   ngOnInit() {
-    this.carroBlanco.src = "../../../assets/Img/Ubicacion.png";
+    this.carroBlanco.src = "../../../assets/Img/SmartParkingCarroBlanco.png";
+    this.ubicacion.src = "../../../assets/Img/Ubicacion.png";
 
     const print=()=>{
-      var mapSprite = new Image();
-      mapSprite.src = '../../../assets/Img/Mapa.jpg';
-
-      context.fillStyle = "#000";
-      context.fillRect(0, 0, canvas.width, canvas.height);
-      context.drawImage(mapSprite, 0, 0, 800, 600);
-      //context.drawImage(this.carroBlanco, 50.4, 205, 70, 70);
-
+    var mapSprite = new Image();
+    mapSprite.src = '../../../assets/Img/Mapa.jpg';
+    context.fillStyle = "#000";
+    context.fillRect(0, 0, canvas.width, canvas.height);
+    context.drawImage(mapSprite, 0, 0, 800, 600);
+    context.drawImage(this.carroBlanco, 50, 205, 70, 70);
     };
 
     var canvas = <HTMLCanvasElement> document.getElementById('Canvas');
     var context = canvas.getContext("2d");
-
     this.timerInterval=setInterval(print, (1000 / 60)); // Refresh 60 times a second
 
-    this.sayHi();
-    // this.deviceService.getEmptiesCount().subscribe((data:any) => {
-    //   console.log(data.count)
 
-    // });
 
   }
   sayHi(){
     console.log('hi')
+   //  var mouseClicked = function (mouse) {
+   // // var rect = canvas.getBoundingClientRect();
+   //  var mouseXPos = (mouse.x - rect.left);
+   //  var mouseYPos = (mouse.y - rect.top);
+   //
+   //    if(50 <= mouseXPos && mouseXPos <= 110 && 210 <= mouseYPos && mouseYPos < 260){
+   //      console.log("me voy para ferrocarril");
+   //
+   //    }
+   //      console.log(mouseXPos, mouseYPos);
+   //    }
+   //    canvas.addEventListener("mousedown", mouseClicked, false);
   }
 
   ToMap() {

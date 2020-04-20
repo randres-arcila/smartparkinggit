@@ -51,6 +51,15 @@ export class MuuaComponent implements OnInit {
     };
     var canvas = <HTMLCanvasElement> document.getElementById('Canvas');
     var context = canvas.getContext("2d");
+    // var mouseClicked = function (mouse) {
+    // var rect = canvas.getBoundingClientRect();
+    // var mouseXPos = (mouse.x - rect.left);
+    // var mouseYPos = (mouse.y - rect.top);
+
+    //     console.log((mouseXPos - 18.5), (mouseYPos - 18.5));
+    //   }
+    //  canvas.addEventListener("mousedown", mouseClicked, false);
+
 
     this.timerInterval=setInterval(print, (1000 / 60)); // Refresh 60 times a second
     this.webSocketService.listen('news').subscribe((data)=>{
