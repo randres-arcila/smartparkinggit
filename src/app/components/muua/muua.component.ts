@@ -38,13 +38,13 @@ export class MuuaComponent implements OnInit {
 
       this.devices.map( device=>{
         if(device.state==='Libre'){
-          context.drawImage(this.sprite1, device.canvas_location.x,device.canvas_location.y,37,37);
+          context.drawImage(this.sprite1, device.canvas_location.x,device.canvas_location.y,35,35);
         }
         else if(device.state=='Ocupado'){
-          context.drawImage(this.sprite2, device.canvas_location.x,device.canvas_location.y,37,37);
+          context.drawImage(this.sprite2, device.canvas_location.x,device.canvas_location.y,35,35);
         }
         else{
-          context.drawImage(this.sprite3, device.canvas_location.x,device.canvas_location.y,37,37);
+          context.drawImage(this.sprite3, device.canvas_location.x,device.canvas_location.y,35,35);
         }
       })
 
