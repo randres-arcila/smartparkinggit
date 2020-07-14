@@ -1,8 +1,9 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { WebSocketService} from 'src/app/services/web-socket.service';
 //import { Status } from 'src/app/Status'
 import { DevicesService } from 'src/app/services/devices.service';
+import { CompileShallowModuleMetadata } from '@angular/compiler';
 
 @Component({
   selector: 'app-home',
@@ -35,6 +36,13 @@ export class HomeComponent implements OnInit{
     count:0
   };
 
+ 
+  @ViewChild('canvas', { static: true }) canvas: ElementRef<HTMLCanvasElement>;
+  elements = [];
+  elemLeft = 0;
+  elemTop = 0;
+  context: CanvasRenderingContext2D;
+
   constructor( private router: Router, private deviceService: DevicesService) {
 
       this.deviceService.getEmptiesCount().subscribe((data:any)=>{
@@ -45,46 +53,103 @@ export class HomeComponent implements OnInit{
       this.circunregional=this.Disponibles[2];
       this.circunferrocarril=this.Disponibles[3];
       this.circunbarranquilla=this.Disponibles[4];
-
     })
-
    }
 
   ngOnInit() {
+    this.elements.push(
+    {
+      imagen:"../../../assets/Img/SmartParkingCarroBlanco.png", 
+      xPos: 49, 
+      yPos: 205,
+      width: 70,
+      height: 70,
+    },
+    {
+      imagen:"../../../assets/Img/SmartParkingCarroBlanco.png", 
+      xPos: 690, 
+      yPos: 80,
+      width: 70,
+      height: 70,
+    },
+    {
+      imagen:"../../../assets/Img/SmartParkingCarroBlanco.png", 
+      xPos: 636, 
+      yPos: 490,
+      width: 70,
+      height: 70,
+    },
+    {
+      imagen:"../../../assets/Img/Ubicacion.png", 
+      xPos: 435, 
+      yPos: 435,
+      width: 70,
+      height: 70,
+    },
+    {
+      imagen:"../../../assets/Img/Ubicacion.png", 
+      xPos: 481, 
+      yPos: 153,
+      width: 70,
+      height: 70,
+    });
+    
+    this.context = (this.canvas.nativeElement as HTMLCanvasElement).getContext('2d');
+    this.elemLeft = (this.canvas.nativeElement as HTMLCanvasElement).offsetLeft;
+    this.elemTop = (this.canvas.nativeElement as HTMLCanvasElement).offsetTop;
+    this.canvas.nativeElement.addEventListener('click', this.clicka, false);
+
+    this.timerInterval=setInterval(this.print, (1000 / 60)); // Refresh 60 times a second
+    
+  }
+
+  private print = () =>{
     this.carroBlanco.src = "../../../assets/Img/SmartParkingCarroBlanco.png";
     this.ubicacion.src = "../../../assets/Img/Ubicacion.png";
-
-    const print=()=>{
     var mapSprite = new Image();
     mapSprite.src = '../../../assets/Img/Mapa.jpg';
-    context.fillStyle = "#000";
-    context.fillRect(0, 0, canvas.width, canvas.height);
-    context.drawImage(mapSprite, 0, 0, 800, 600);
-    context.drawImage(this.carroBlanco, 50, 205, 70, 70);
-    };
-
-    var canvas = <HTMLCanvasElement> document.getElementById('Canvas');
-    var context = canvas.getContext("2d");
-    this.timerInterval=setInterval(print, (1000 / 60)); // Refresh 60 times a second
-
-
-
+    this.context.drawImage(mapSprite, 0, 0, 800, 600);
+    
+    this.elements.forEach((element) => {
+      const img = new Image();
+      img.src = element.imagen;
+      this.context.drawImage( img, element.xPos, element.yPos, element.width, element.height);
+    })
   }
-  sayHi(){
-    console.log('hi')
-   //  var mouseClicked = function (mouse) {
-   // // var rect = canvas.getBoundingClientRect();
-   //  var mouseXPos = (mouse.x - rect.left);
-   //  var mouseYPos = (mouse.y - rect.top);
-   //
-   //    if(50 <= mouseXPos && mouseXPos <= 110 && 210 <= mouseYPos && mouseYPos < 260){
-   //      console.log("me voy para ferrocarril");
-   //
-   //    }
-   //      console.log(mouseXPos, mouseYPos);
-   //    }
-   //    canvas.addEventListener("mousedown", mouseClicked, false);
-  }
+
+  private clicka = (event) => {
+    let x = event.pageX - this.elemLeft,
+        y = event.pageY - this.elemTop;
+      console.log(x, y);
+      
+      const condition = (element) => {
+        return y > element.yPos && y < element.yPos + element.height && x > element.xPos && x < element.xPos + element.width;
+      }
+  
+      const elementIndex = this.elements.findIndex(condition);
+      console.log(this.elements.findIndex);
+      switch (elementIndex) {
+        case 0: 
+          this.ToFerrocarril();
+          break;
+        case 1: 
+          this.ToBarranquilla();
+          break;
+        case 2:
+          this.ToRegional();
+          break;
+        case 3:
+          this.ToMuuA();
+          break;
+        case 4:
+          this.ToMap();
+          break;
+        default:
+        //Error inminente
+        console.log("fallé, jaja saludos");
+        break;
+      }
+    }
 
   ToMap() {
     this.router.navigate(['/mapita']);
